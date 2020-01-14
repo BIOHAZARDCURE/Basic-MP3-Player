@@ -1,0 +1,13 @@
+package com.sam;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Main {
+
+   static UI UIObject = new UI();
+
+    public static void main(String[] args) {
+        UIObject.Main_Menu();
+    }
+}
