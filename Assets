@@ -1,0 +1,38 @@
+package com.sam;
+import java.awt.*;
+import java.io.File;
+import javafx.scene.media.Media;
+import javax.swing.*;
+
+public class Assets {
+
+    public static ImageIcon ResizeAlbumArt(ImageIcon art){
+        Image img = art.getImage();
+        Image newimg = img.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
+        art = new ImageIcon(newimg);
+        return art;
+    }
+
+    // Song 1 - Akuji Temple Song
+    String akuji = "E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Audio\\akuji.mp3";
+    ImageIcon AKUJI = new ImageIcon ("E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Pictures\\akuji.png");
+    Media Akuji = new Media(new File(akuji).toURI().toString());
+
+    //Song 2 - Classic Vaporwave Jam
+    String vaporwave = "E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Audio\\vape.mp3";
+    ImageIcon VAPORWAVE = new ImageIcon("E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Pictures\\vaporwave.jpg");
+    Media Vaporwave = new Media(new File(vaporwave).toURI().toString());
+
+    //Song 3 - Dante's theme from DMC 5
+    String DMC5_1 = "E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Audio\\subhuman.mp3";
+    ImageIcon DMC5 = new ImageIcon("E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Pictures\\DMC5OST.jpg");
+    Media DMC_Dante = new Media(new File(DMC5_1).toURI().toString());
+
+    //Song 4 - Dante's theme from DMC 5
+    String DMC5_2 = "E:\\Java Programs\\Media Player (Linklist Challenge)\\src\\Audio\\DevilTrigger.mp3";
+    //Use the above declared icon for this too.
+    Media DMC_Nero = new Media(new File(DMC5_2).toURI().toString());
+
+
+
+}
