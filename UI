@@ -1,0 +1,100 @@
+package com.sam;
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+
+public class UI {
+
+    static Music_Player Walkman = new Music_Player();
+    static Assets Song = new Assets();
+
+    public static void Main_Menu() {
+        new javafx.embed.swing.JFXPanel(); // forces JavaFX init
+
+        Object[] Main_Menu_Choices = new Object[]{"Pick a song", "Play a random song", "Stop Playback", "Quit"};
+
+        while (true) {
+            Scanner Startup = new Scanner(String.valueOf(JOptionPane.showOptionDialog(null, "Please make a selection!\n", "Bio's Music Player", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Main_Menu_Choices, Main_Menu_Choices[0])));
+            int choice = Startup.nextInt();
+            switch (choice) {
+                case 0:
+                    Media_Player_UI();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    System.exit(100);
+            }
+        }
+    }
+    public static void Media_Player_UI(){
+        Assets AssetsContainer = new Assets();
+
+        LinkedList<Media> SongList = new LinkedList<>();
+        SongList.add(0, Song.Akuji);
+        SongList.add(1,Song.Vaporwave);
+        SongList.add(2,Song.DMC_Dante);
+        SongList.add(3,Song.DMC_Nero);
+
+        LinkedList<ImageIcon> AlbumArt = new LinkedList<>();
+        AlbumArt.add(0,Assets.ResizeAlbumArt(AssetsContainer.AKUJI));
+        AlbumArt.add(1,Assets.ResizeAlbumArt(AssetsContainer.VAPORWAVE));
+        AlbumArt.add(2,Assets.ResizeAlbumArt(AssetsContainer.DMC5));
+        AlbumArt.add(3,Assets.ResizeAlbumArt(AssetsContainer.DMC5));
+
+
+        LinkedList<String> SongTitle = new LinkedList<>();
+        SongTitle.add(0,"The Temple of Tears");
+        SongTitle.add(1,"Vaporwave");
+        SongTitle.add(2,"Subhuman");
+        SongTitle.add(3,"Devil Trigger");
+
+        Object Controls[] = new Object[]{"Previous Track","Play / Pause","Stop","Next Track"};
+        int LogicCatch = 0;
+        while (true) {
+            Scanner MediaPlayer = new Scanner(String.valueOf(JOptionPane.showOptionDialog(null, "", "Now playing..." + SongTitle.get(LogicCatch), JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, AlbumArt.get(LogicCatch), Controls, Controls[0])));
+            int UserInput = MediaPlayer.nextInt();
+            switch (UserInput){
+                case 0:
+                    if (LogicCatch==0){
+                        LogicCatch=0;
+                    }else{
+                        LogicCatch = LogicCatch - 1;
+                    }
+                    if (Music_Player.TrackPlaying){
+                        Walkman.Stop();
+                    }
+                    break;
+                case 1:
+                    Walkman.Play(SongList.get(LogicCatch));
+                    break;
+                case 2:
+                    Walkman.Stop();
+                    break;
+                case 3:
+
+                    if (LogicCatch < SongList.size()-1){
+                        LogicCatch++;
+                    }else{
+                        LogicCatch = SongList.size()-1;
+                    }
+                    if (Music_Player.TrackPlaying){
+                        Walkman.Stop();
+                    }
+                    break;
+            }
+        }
+    }
+
+
+}
