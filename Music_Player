@@ -1,0 +1,35 @@
+package com.sam;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+
+import javax.swing.*;
+
+public class Music_Player {
+//    Assets AssetsContainer = new Assets();
+
+    static boolean TrackPlaying=false;
+    private static MediaPlayer Player;
+
+    public boolean Play(Media MP3File){
+        if (TrackPlaying) {
+            Player.pause();
+        }else {
+            Player = new MediaPlayer(MP3File);
+            Player.play();
+            TrackPlaying=true;
+        }
+        return TrackPlaying;
+    }
+    public void Stop(){
+        new javafx.embed.swing.JFXPanel();
+        Player.stop();
+        this.TrackPlaying=false;
+    }
+    public static ImageIcon DisplayAlbumArt(ImageIcon CurrentTrack){
+        JOptionPane.showMessageDialog(null, " "," ",JOptionPane.PLAIN_MESSAGE,Assets.ResizeAlbumArt(CurrentTrack));
+        return CurrentTrack;
+    }
+
+}
